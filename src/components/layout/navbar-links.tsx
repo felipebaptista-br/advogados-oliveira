@@ -36,7 +36,7 @@ function NavBarLink({ href, label, isActive = false, ...props }: NavBarLinkParam
       <Button
         variant="ghost"
         className={cn(
-          "text-sm font-normal w-40 h-10 transition-colors duration-300 hover:bg-emerald-900 hover:text-white text-emerald-900 dark:text-white dark:hover:bg-emerald-950 dark:hover:text-white",
+          "h-10 whitespace-nowrap px-4 text-sm font-normal transition-colors duration-300 hover:bg-emerald-900 hover:text-white text-emerald-900 dark:text-white dark:hover:bg-emerald-950 dark:hover:text-white",
           isActive && "border-transparent border-b-2 border-b-emerald-900 dark:border-b-emerald-400"
         )}
       >

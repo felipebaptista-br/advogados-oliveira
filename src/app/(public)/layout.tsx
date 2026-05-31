@@ -7,6 +7,7 @@ import "../globals.css"
 import NavBar from "@/components/layout/navbar"
 import Footer from "@/components/layout/footer"
 import { ThemeProvider } from "@/components/theme-provider"
+import { siteConfig } from "@/lib/seo"
 
 const robotoSlabHeading = Roboto_Slab({ subsets: ['latin'], variable: '--font-heading' })
 
@@ -23,8 +24,65 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Advogados Oliveira",
-  description: "Advogados Oliveira é um escritório de advocacia especializado em direito civil, empresarial e trabalhista, oferecendo soluções jurídicas personalizadas para nossos clientes. Com uma equipe experiente e dedicada, estamos comprometidos em fornecer serviços jurídicos de alta qualidade e resultados eficazes."
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  keywords: [
+    "advocacia",
+    "direito civil",
+    "direito empresarial",
+    "direito trabalhista",
+    "escritório de advocacia",
+    "consultoria jurídica",
+  ],
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    locale: siteConfig.locale,
+    type: "website",
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: siteConfig.name,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
 }
 
 export default function RootLayout({
@@ -34,7 +92,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="pt-BR"
       suppressHydrationWarning
       className={cn(
         "h-full",
@@ -47,12 +105,7 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider>
           <ScrollArea className="w-full h-full">
             <NavBar />
             <div className="w-full h-full flex-1 pt-20">

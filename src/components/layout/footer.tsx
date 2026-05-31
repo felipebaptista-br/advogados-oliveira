@@ -5,7 +5,6 @@ import { ModeSelect } from "../ui/mode-select"
 import {
   ArrowUpRight,
   Clock3,
-  Mail,
   MapPin,
   Phone,
   Scale,
@@ -26,7 +25,7 @@ export default function Footer({ children, className, ...props }: FooterParams):
       className={className}
       {...props}
     >
-      <div className="mx-auto flex w-full flex-col gap-14 p-20">
+      <div className="mx-auto flex w-full flex-col gap-14 p-6 sm:p-8 md:p-10 lg:p-20">
         <div className="grid gap-12 border-b border-white/10 pb-12 lg:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
           <FooterColumn className="gap-6">
             <div className="space-y-4">
@@ -72,13 +71,39 @@ export default function Footer({ children, className, ...props }: FooterParams):
           <FooterColumn className="gap-5">
             <FooterHeading>Contato</FooterHeading>
             <FooterContact icon={<MapPin className="size-4" />}>
-              Avenida Central, 245, Sala 08, Centro
+              <a
+                href="https://www.google.com/maps/search/Avenida+Paulista+1636+Bela+Vista+São+Paulo"
+                target="_blank"
+                rel="noopener noreferrer"
+                  className="wrap-break-word transition-colors hover:text-white"
+              >
+                Avenida Paulista, nº1636, conj. 3, Bela Vista, São Paulo/SP, Edifício Corporate Paulista (ao lado do MASP).
+              </a>
             </FooterContact>
             <FooterContact icon={<Phone className="size-4" />}>
-              (11) 4000-1234
+              <div className="flex flex-col gap-1">
+                <a href="tel:+5511994696985" className="transition-colors hover:text-white">
+                  (11) 99469-6985
+                </a>
+                <a
+                  href="https://wa.me/5511985828589"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-white"
+                >
+                  (11) 98582-8589 (Whatsapp)
+                </a>
+              </div>
             </FooterContact>
-            <FooterContact icon={<Mail className="size-4" />}>
-              contato@advogadosoliveira.com.br
+            <FooterContact icon={<ArrowUpRight className="size-4" />}>
+              <a
+                href="https://linktr.ee/escritorioadvogadosoliveira"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="break-all transition-colors hover:text-white"
+              >
+                linktr.ee/escritorioadvogadosoliveira
+              </a>
             </FooterContact>
             <FooterContact icon={<Clock3 className="size-4" />}>
               Seg a Sex, das 9h às 18h
@@ -101,7 +126,7 @@ export default function Footer({ children, className, ...props }: FooterParams):
           </div>
         </div>
       </div>
-      <div className="border-t border-white/10 px-20 py-6 text-center text-sm text-emerald-50/65">
+      <div className="border-t border-white/10 px-6 py-6 text-center text-sm text-emerald-50/65 sm:px-8 md:px-10 lg:px-20">
         © {currentYear} Advogados Oliveira. Todos os direitos reservados.
       </div>
       {children}
@@ -119,7 +144,7 @@ export function FooterProvider({ children, className, ...props }: FooterProvider
     <footer
       className={cn(
         className,
-        "w-full bg-[radial-gradient(circle_at_top_left,_rgba(52,211,153,0.15),_transparent_28%),linear-gradient(135deg,_rgb(2,44,34),_rgb(6,78,59)_55%,_rgb(4,120,87))]"
+        "w-full bg-[radial-gradient(circle_at_top_left,rgba(52,211,153,0.15),transparent_28%),linear-gradient(135deg,rgb(2,44,34),rgb(6,78,59)_55%,rgb(4,120,87))]"
       )}
       {...props}
     >
@@ -211,7 +236,7 @@ export function FooterContact({ children, icon, className, ...props }: FooterCon
   return (
     <div
       className={cn(
-        "flex items-start gap-3 text-sm text-emerald-50/78",
+        "flex min-w-0 items-start gap-3 text-sm text-emerald-50/78",
         className
       )}
       {...props}
@@ -219,7 +244,7 @@ export function FooterContact({ children, icon, className, ...props }: FooterCon
       <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/8 text-emerald-100">
         {icon}
       </span>
-      <span className="leading-6">{children}</span>
+      <span className="leading-6 wrap-break-word">{children}</span>
     </div>
   )
 }

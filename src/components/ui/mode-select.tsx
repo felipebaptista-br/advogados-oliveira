@@ -1,7 +1,6 @@
 "use client"
 
 import { JSX } from "react"
-import { useTheme } from "next-themes"
 import { Monitor, MoonStar, SunMedium } from "lucide-react"
 
 import {
@@ -12,6 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { cn } from "@/lib/utils"
+import { useTheme } from "@/components/theme-provider"
 
 type ThemeMode = "light" | "dark" | "system"
 
